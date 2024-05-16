@@ -64,15 +64,15 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
         cbo_cepa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cabernet Sauvignon", "Pinot noir", "Riesling", "Merlot", "Chardonnay o Sauvignon", "Blanc" }));
 
-        cbo_color.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tinto", "Blanco o Rosado" }));
+        cbo_color.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tinto", "Blanco", "Rosado" }));
 
         jLabel4.setText("Edad:");
 
         jLabel5.setText("Nivel:");
 
-        cbo_edad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joven", "Crianza", "Reserva o Gran Reserva" }));
+        cbo_edad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Joven", "Crianza", "Reserva", "Gran Reserva" }));
 
-        cbo_nivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seco", "Semiseco ", "Abocado ", "Dulce o Muy Dulce" }));
+        cbo_nivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seco", "Semiseco ", "Abocado ", "Dulce", "Muy Dulce" }));
 
         btn_agregar.setText("Agregar");
         btn_agregar.addActionListener(new java.awt.event.ActionListener() {
