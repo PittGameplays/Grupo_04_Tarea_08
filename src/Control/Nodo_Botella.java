@@ -4,7 +4,20 @@ import Modelo.Botella;
 
 public class Nodo_Botella {
     private Botella elemento;
-    private Nodo_Botella siguiente;
+    private Nodo_Botella anterior, siguiente;
+
+    public Nodo_Botella(Botella elemento) {
+        this.elemento = elemento;
+        anterior = siguiente = null;
+    }
+
+    public Nodo_Botella getAnterior() {
+        return anterior;
+    }
+
+    public void setAnterior(Nodo_Botella anterior) {
+        this.anterior = anterior;
+    }
 
     public Botella getElemento(){
         return elemento;
@@ -21,5 +34,4 @@ public class Nodo_Botella {
     public void setSiguiente(Nodo_Botella siguiente){
         this.siguiente = siguiente;
     }
-    //aaa
 }
