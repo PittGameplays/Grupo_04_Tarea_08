@@ -4,7 +4,6 @@ import Modelo.Botella;
 
 public class Nodo_Botella {
     private Botella elemento;
-    String mija;
     private Nodo_Botella siguiente;
 
     public Botella getElemento(){
