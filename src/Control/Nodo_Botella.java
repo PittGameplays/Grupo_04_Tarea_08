@@ -6,6 +6,10 @@ public class Nodo_Botella {
     private Botella elemento;
     private Nodo_Botella siguiente;
 
+    public Nodo_Botella(Botella elemento) {
+        this.elemento = elemento;
+    }
+
     public Botella getElemento(){
         return elemento;
     }

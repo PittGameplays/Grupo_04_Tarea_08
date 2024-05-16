@@ -1,17 +1,17 @@
 package Modelo;
 
-import java.util.List;
+import Control.Lista_Botella;
 
 public class Cola {
     private String tipo;
-    private List<String> botella;
+    private Lista_Botella botellas;
 
     public Cola() {
     }
 
-    public Cola(String tipo, List<String> botella) {
+    public Cola(String tipo) {
         this.tipo = tipo;
-        this.botella = botella;
+        this.botellas = null;
     }
 
     public String getTipo() {
@@ -22,12 +22,12 @@ public class Cola {
         this.tipo = tipo;
     }
 
-    public List<String> getBotella() {
-        return botella;
+    public Lista_Botella getBotella() {
+        return botellas;
     }
 
-    public void setBotella(List<String> botella) {
-        this.botella = botella;
+    public void setBotella(Lista_Botella botella) {
+        this.botellas = botella;
     }
     
      
