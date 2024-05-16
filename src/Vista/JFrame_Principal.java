@@ -3,6 +3,9 @@ package Vista;
 import Control.Lista_Botella;
 import Modelo.Botella;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -240,7 +243,24 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+        try {
+            Date fecha_util = (Date) jSpinner1.getModel().getValue();
+            LocalDate fecha_de_cosecha = fecha_util.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            String cepa = (String) cbo_cepa.getSelectedItem();
+            String color = (String) cbo_color.getSelectedItem();
+            String edad = (String) cbo_edad.getSelectedItem();
+            String nivel_de_azucar = (String) cbo_nivel.getSelectedItem();
+            if (cepa == null || color == null || edad == null || nivel_de_azucar == null || fecha_de_cosecha == null) {
+                throw new Exception("Todos los campos deben estar completos.");
+            }
+            Botella elemento = new Botella(fecha_de_cosecha, cepa, color, edad, nivel_de_azucar);
+            objLista.agregar(elemento);
+            objLista.listar(modTabla);
 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al agregar la botella: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     /**
