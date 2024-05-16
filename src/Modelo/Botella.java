@@ -6,13 +6,13 @@ public class Botella {
     private Date fecha_de_cosecha;
     private String cepa;
     private String color;
-    private int edad;
+    private String edad;
     private String nivel_de_azucar;
  
     public Botella() {
     }
 
-    public Botella(Date fecha_de_cosecha, String cepa, String color, int edad, String nivel_de_azucar) {
+    public Botella(Date fecha_de_cosecha, String cepa, String color, String edad, String nivel_de_azucar) {
         this.fecha_de_cosecha = fecha_de_cosecha;
         this.cepa = cepa;
         this.color = color;
@@ -44,11 +44,11 @@ public class Botella {
         this.color = color;
     }
 
-    public int getEdad() {
+    public String getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(String edad) {
         this.edad = edad;
     }
 
