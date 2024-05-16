@@ -168,6 +168,8 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("REGISTRO", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(102, 0, 0));
+
         tbl_datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
