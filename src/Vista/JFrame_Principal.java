@@ -48,6 +48,9 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
         jLabel3.setText("Color:");
 
+        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
+        jSpinner1.setEditor(new javax.swing.JSpinner.DateEditor(jSpinner1, "dd/MM/yyyy"));
+
         cbo_cepa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cabernet Sauvignon", "Pinot noir", "Riesling", "Merlot", "Chardonnay o Sauvignon", "Blanc" }));
 
         cbo_color.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tinto", "Blanco o Rosado" }));

@@ -1,9 +1,9 @@
 package Modelo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Botella {
-    private Date fecha_de_cosecha;
+    private LocalDate fecha_de_cosecha;
     private String cepa;
     private String color;
     private String edad;
@@ -12,7 +12,7 @@ public class Botella {
     public Botella() {
     }
 
-    public Botella(Date fecha_de_cosecha, String cepa, String color, String edad, String nivel_de_azucar) {
+    public Botella(LocalDate fecha_de_cosecha, String cepa, String color, String edad, String nivel_de_azucar) {
         this.fecha_de_cosecha = fecha_de_cosecha;
         this.cepa = cepa;
         this.color = color;
@@ -20,11 +20,11 @@ public class Botella {
         this.nivel_de_azucar = nivel_de_azucar;
     }
 
-    public Date getFecha_de_cosecha() {
+    public LocalDate getFecha_de_cosecha() {
         return fecha_de_cosecha;
     }
 
-    public void setFecha_de_cosecha(Date fecha_de_cosecha) {
+    public void setFecha_de_cosecha(LocalDate fecha_de_cosecha) {
         this.fecha_de_cosecha = fecha_de_cosecha;
     }
 
