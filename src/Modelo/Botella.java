@@ -2,6 +2,6 @@ package Modelo;
 
 public class Botella {
     private String tipo;
-    private String pedro;
+    private String bryan;
     //bryan es gay
 }
