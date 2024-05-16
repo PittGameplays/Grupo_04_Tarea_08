@@ -59,5 +59,9 @@ public class Botella {
     public void setNivel_de_azucar(String nivel_de_azucar) {
         this.nivel_de_azucar = nivel_de_azucar;
     }
+    
+    public Object[] getRegistro(){
+        return new Object[]{fecha_de_cosecha, cepa, color, edad, nivel_de_azucar};
+    }
    
 }

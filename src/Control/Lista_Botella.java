@@ -1,6 +1,7 @@
 package Control;
 
 import Modelo.Botella;
+import javax.swing.table.DefaultTableModel;
 
 public class Lista_Botella {
     Nodo_Botella inicio, fin;
@@ -33,5 +34,12 @@ public class Lista_Botella {
             return temp;
         }
         return null;
+    }
+    
+    public void listar(DefaultTableModel modTabla){
+        modTabla.setRowCount(0);
+        for (Nodo_Botella aux = inicio; aux != null; aux = aux.getSiguiente()) {
+            modTabla.addRow(aux.getElemento().getRegistro());
+        }
     }
 }
