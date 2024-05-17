@@ -23,7 +23,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         
     
     }
-  private void filtrarYActualizarJTable(String cepaFiltrada) {
+  private void ActualizarJTable(String cepaFiltrada) {
     DefaultTableModel model = (DefaultTableModel) tbl_datos.getModel(); 
     model.setRowCount(0);
 
@@ -304,7 +304,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
     private void btn_siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguienteActionPerformed
        indiceCepaActual = (indiceCepaActual + 1) % cepas.length; 
-       filtrarYActualizarJTable(cepas[indiceCepaActual]);
+       ActualizarJTable(cepas[indiceCepaActual]);
     }//GEN-LAST:event_btn_siguienteActionPerformed
 
     private void btn_anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anteriorActionPerformed
@@ -313,7 +313,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }else {
         indiceCepaActual--;
     }
-        filtrarYActualizarJTable(cepas[indiceCepaActual]);
+        ActualizarJTable(cepas[indiceCepaActual]);
     }//GEN-LAST:event_btn_anteriorActionPerformed
 
     /**
