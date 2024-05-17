@@ -1,6 +1,7 @@
 package Vista;
 
 import Control.Lista_Botella;
+import Control.Lista_Cola;
 import Control.Nodo_Botella;
 import Modelo.Botella;
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class JFrame_Principal extends javax.swing.JFrame {
+    Lista_Cola lista = new Lista_Cola();
     Lista_Botella objLista = new Lista_Botella();
     Botella  objbotella = new Botella();
     private DefaultTableModel modTabla;

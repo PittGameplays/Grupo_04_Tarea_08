@@ -6,7 +6,12 @@ import javax.swing.JOptionPane;
 
 public class Lista_Cola {
 
-    Nodo_Cola inicio, fin;
+    private Nodo_Cola inicio, fin;
+    private int organizar = 0;
+
+    public void setOrganizar(int organizar) {
+        this.organizar = organizar;
+    }
 
     public Lista_Cola() {
         for (int i = 0; i < 12; i++) {
