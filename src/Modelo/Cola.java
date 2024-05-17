@@ -9,11 +9,6 @@ public class Cola {
     public Cola() {
     }
 
-    public Cola(String tipo) {
-        this.tipo = tipo;
-        this.botellas = null;
-    }
-
     public String getTipo() {
         return tipo;
     }

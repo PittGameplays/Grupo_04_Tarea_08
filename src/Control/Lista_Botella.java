@@ -26,6 +26,14 @@ public class Lista_Botella {
         return inicio == null;
     }
     
+    public int Recorrer_Pila_Contar() {
+        int a = 0;
+        for (Nodo_Botella aux = inicio; aux != null; aux = aux.getSiguiente()) {
+            a++;
+        }
+        return a;
+    }
+    
     public Botella retirar(){
         if(!colaVacia()){
             Botella temp = fin.getElemento();
