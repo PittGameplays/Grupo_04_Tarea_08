@@ -9,6 +9,9 @@ public class Lista_Botella {
     public Lista_Botella() {
         inicio = fin = null;
     }
+     public Nodo_Botella getInicio() {
+        return inicio;
+    }
     
     public void agregar(Botella elemento){
         Nodo_Botella nuevo = new Nodo_Botella(elemento);
@@ -50,4 +53,5 @@ public class Lista_Botella {
             modTabla.addRow(aux.getElemento().getRegistro());
         }
     }
+    
 }
