@@ -208,8 +208,8 @@
                         <StringItem index="1" value="Pinot noir"/>
                         <StringItem index="2" value="Riesling"/>
                         <StringItem index="3" value="Merlot"/>
-                        <StringItem index="4" value="Chardonnay o Sauvignon"/>
-                        <StringItem index="5" value="Blanc"/>
+                        <StringItem index="4" value="Chardonnay"/>
+                        <StringItem index="5" value="Sauvignon blanc"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -379,11 +379,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Anterior"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_anteriorActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_siguiente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Siguiente"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_siguienteActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_retirar">
               <Properties>
@@ -401,6 +407,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbo_organizarActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>

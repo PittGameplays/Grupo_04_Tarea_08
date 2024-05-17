@@ -1,6 +1,7 @@
 package Vista;
 
 import Control.Lista_Botella;
+import Control.Nodo_Botella;
 import Modelo.Botella;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -10,17 +11,31 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class JFrame_Principal extends javax.swing.JFrame {
-    
     Lista_Botella objLista = new Lista_Botella();
+    Botella  objbotella = new Botella();
     private DefaultTableModel modTabla;
+    private int indiceCepaActual = 0;
+    private String[] cepas = {"Cabernet Sauvignon", "Pinot noir", "Riesling", "Merlot", "Chardonnay", "Sauvignon blanc"};
 
     public JFrame_Principal() {
         initComponents();
         modTabla = (DefaultTableModel) tbl_datos.getModel();
         
-    }
     
+    }
+  private void filtrarYActualizarJTable(String cepaFiltrada) {
+    DefaultTableModel model = (DefaultTableModel) tbl_datos.getModel(); 
+    model.setRowCount(0);
 
+    Nodo_Botella nodoActual = objLista.getInicio(); 
+    while (nodoActual != null) {
+        Botella botella = nodoActual.getElemento();
+        if (botella.getCepa().equals(cepaFiltrada)) {
+            model.addRow(botella.getRegistro()); 
+        }
+        nodoActual = nodoActual.getSiguiente();
+    }
+  }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -66,7 +81,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         jSpinner1.setModel(new javax.swing.SpinnerDateModel());
         jSpinner1.setEditor(new javax.swing.JSpinner.DateEditor(jSpinner1, "dd/MM/yyyy"));
 
-        cbo_cepa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cabernet Sauvignon", "Pinot noir", "Riesling", "Merlot", "Chardonnay o Sauvignon", "Blanc" }));
+        cbo_cepa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cabernet Sauvignon", "Pinot noir", "Riesling", "Merlot", "Chardonnay", "Sauvignon blanc" }));
 
         cbo_color.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tinto", "Blanco", "Rosado" }));
 
@@ -187,12 +202,27 @@ public class JFrame_Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_datos);
 
         btn_anterior.setText("Anterior");
+        btn_anterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_anteriorActionPerformed(evt);
+            }
+        });
 
         btn_siguiente.setText("Siguiente");
+        btn_siguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_siguienteActionPerformed(evt);
+            }
+        });
 
         btn_retirar.setText("Retirar");
 
         cbo_organizar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cepa", "Edad", "Color", "Nivel de Azúcar" }));
+        cbo_organizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_organizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -268,6 +298,24 @@ public class JFrame_Principal extends javax.swing.JFrame {
     
     }//GEN-LAST:event_btn_agregarActionPerformed
 
+    private void cbo_organizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_organizarActionPerformed
+    
+    }//GEN-LAST:event_cbo_organizarActionPerformed
+
+    private void btn_siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguienteActionPerformed
+       indiceCepaActual = (indiceCepaActual + 1) % cepas.length; 
+       filtrarYActualizarJTable(cepas[indiceCepaActual]);
+    }//GEN-LAST:event_btn_siguienteActionPerformed
+
+    private void btn_anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anteriorActionPerformed
+          if (indiceCepaActual == 0) {
+              indiceCepaActual = cepas.length - 1; 
+    }else {
+        indiceCepaActual--;
+    }
+        filtrarYActualizarJTable(cepas[indiceCepaActual]);
+    }//GEN-LAST:event_btn_anteriorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -302,6 +350,11 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 new JFrame_Principal().setVisible(true);
             }
         });
+    }
+     private void actualizarTabla() {
+        DefaultTableModel model = (DefaultTableModel) tbl_datos.getModel();
+        model.setRowCount(0);
+        objLista.listar(modTabla);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
