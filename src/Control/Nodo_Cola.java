@@ -3,8 +3,8 @@ package Control;
 import Modelo.Cola;
 
 public class Nodo_Cola {
-    Cola elemento;      
-    Nodo_Cola siguiente;
+    private Cola elemento;      
+    private Nodo_Cola siguiente;
     
     public Nodo_Cola(Cola elemento) {
         this.elemento = elemento;

@@ -1,6 +1,8 @@
 package Control;
 
+import Modelo.Botella;
 import Modelo.Cola;
+import javax.swing.JOptionPane;
 
 public class Lista_Cola {
 
@@ -12,13 +14,26 @@ public class Lista_Cola {
             if (inicio == null) {
                 inicio = nuevo;
             } else {
-                fin.siguiente = nuevo;
+                fin.setSiguiente(nuevo);
+                nuevo.setSiguiente(inicio);
             }
             fin = nuevo;
         }
     }
+    
+    public void agregarBotella(Botella elemento){
+        Cola temp = EncontrarTipo(elemento.getCepa());
+        if(temp != null){
+            temp.getBotella().agregar(elemento);
+        } else if((temp = EncontrarVacio()) != null){
+            temp.setTipo(elemento.getCepa());
+            temp.getBotella().agregar(elemento);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha encontrado ninguna columna disponible");
+        }
+    }
 
-    public Cola Encontrar(String tipo) {
+    public Cola EncontrarTipo(String tipo) {
         for (Nodo_Cola aux = inicio; aux != null; aux = aux.getSiguiente()) {
             if (aux.getElemento().getTipo().equals(tipo) && aux.getElemento().getBotella().Recorrer_Pila_Contar() < 12) {
                 return aux.getElemento();
@@ -26,8 +41,17 @@ public class Lista_Cola {
         }
         return null;
     }
+    
+    public Cola EncontrarVacio() {
+        for (Nodo_Cola aux = inicio; aux != null; aux = aux.getSiguiente()) {
+            if (aux.getElemento().getTipo().equals("")) {
+                return aux.getElemento();
+            }
+        }
+        return null;
+    }
 
     public Cola InicioCola() {
-        return inicio.elemento;
+        return inicio.getElemento();
     }
 }
