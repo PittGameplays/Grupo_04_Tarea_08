@@ -2,7 +2,6 @@ package Vista;
 
 import Control.Lista_Botella;
 import Control.Lista_Cola;
-import Control.Nodo_Botella;
 import Modelo.Botella;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -14,18 +13,13 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
     Lista_Cola lista = new Lista_Cola();
     Lista_Botella temp = lista.getInicio().getBotella();
-    //Lista_Botella objLista = new Lista_Botella();
-    Botella objbotella = new Botella();
     private DefaultTableModel modTabla;
-    private int indiceCepaActual = 0;
-    private String[] cepas = {"Cabernet Sauvignon", "Pinot noir", "Riesling", "Merlot", "Chardonnay", "Sauvignon blanc"};
-
     public JFrame_Principal() {
         initComponents();
         modTabla = (DefaultTableModel) tbl_datos.getModel();
-
+        setLocationRelativeTo(null);
     }
-    
+
     private void Refrescar() {
         temp.listar(modTabla);
     }
@@ -290,7 +284,24 @@ public class JFrame_Principal extends javax.swing.JFrame {
         String edad = (String) cbo_edad.getSelectedItem();
         String nivel_de_azucar = (String) cbo_nivel.getSelectedItem();
         Botella elemento = new Botella(fecha_de_cosecha, cepa, color, edad, nivel_de_azucar);
-        lista.agregarBotella(elemento);
+        if (!lista.agregarBotella(elemento)) {
+            String encontrar;
+            switch (lista.getOrganizar()) {
+                case 0:
+                    encontrar = "Cepa";
+                    break;
+                case 1:
+                    encontrar = "Color";
+                    break;
+                case 2:
+                    encontrar = "Edad";
+                    break;
+                default:
+                    encontrar = "Nivel de Azucar";
+            }
+            JOptionPane.showMessageDialog(null, "No se puede añadir otra botella de ese tipo con la "
+                    + "clasificacion " + encontrar + "\nIntente reorganizar la lista y vuelva a añadir la botella");
+        }
         Refrescar();
 
     }//GEN-LAST:event_btn_agregarActionPerformed
@@ -310,8 +321,18 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_anteriorActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        lista.Reorganizar(cbo_organizar.getSelectedIndex());
-        temp.listar(modTabla);
+        Lista_Cola comprobante = (Lista_Cola) ((Object) lista);
+        if (comprobante.Reorganizar(cbo_organizar.getSelectedIndex())) {
+            lista.Reorganizar(cbo_organizar.getSelectedIndex());
+        } else {
+            if (JOptionPane.showConfirmDialog(null, "No es posible reorganizar segun "
+                    + cbo_organizar.getSelectedItem() + "\n ¿Quisiera eliminar los elementos que no quepan?",
+                    "Confirmacion", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                lista.Reorganizar(cbo_organizar.getSelectedIndex());
+            }
+        }
+
+        Refrescar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

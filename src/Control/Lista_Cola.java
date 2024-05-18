@@ -2,7 +2,6 @@ package Control;
 
 import Modelo.Botella;
 import Modelo.Cola;
-import javax.swing.JOptionPane;
 
 public class Lista_Cola {
 
@@ -11,6 +10,10 @@ public class Lista_Cola {
 
     public void setOrganizar(int organizar) {
         this.organizar = organizar;
+    }
+
+    public int getOrganizar() {
+        return organizar;
     }
 
     public Lista_Cola() {
@@ -26,7 +29,7 @@ public class Lista_Cola {
         }
     }
 
-    public void agregarBotella(Botella elemento) {
+    public boolean agregarBotella(Botella elemento) {
         
         String encontrar;
         switch (organizar) {
@@ -50,8 +53,9 @@ public class Lista_Cola {
             temp.setTipo(encontrar);
             temp.getBotella().agregar(elemento);
         } else {
-            JOptionPane.showMessageDialog(null, "No se ha encontrado ninguna columna disponible");
+            return false;
         }
+        return true;
     }
 
     public Cola EncontrarTipo(String tipo) {
@@ -102,7 +106,7 @@ public class Lista_Cola {
         return null;
     }
 
-    public void Reorganizar(int tipo) {
+    public boolean Reorganizar(int tipo) {
         Lista_Botella temp = new Lista_Botella();
         Nodo_Cola aux = inicio;
         do {
@@ -116,8 +120,10 @@ public class Lista_Cola {
         } while (aux != inicio);
 
         organizar = tipo;
-        temp.reorganizar(this);
+        return temp.reorganizar(this);
     }
+    
+    
 
     public Cola getInicio() {
         return inicio.getElemento();

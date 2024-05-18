@@ -67,11 +67,14 @@ public class Lista_Botella {
         }
     }
 
-    public void reorganizar(Lista_Cola lista) {
+    public boolean reorganizar(Lista_Cola lista) {
         int cont = Recorrer_Pila_Contar();
         for (int i = 0; i < cont; i++) {
-            lista.agregarBotella(retirar());
+            if(!lista.agregarBotella(retirar())){
+                return false;
+            }
         }
+        return true;
     }
 
 }
