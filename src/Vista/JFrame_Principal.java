@@ -57,6 +57,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
         btn_siguiente = new javax.swing.JButton();
         btn_retirar = new javax.swing.JButton();
         cbo_organizar = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -211,10 +212,17 @@ public class JFrame_Principal extends javax.swing.JFrame {
 
         btn_retirar.setText("Retirar");
 
-        cbo_organizar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cepa", "Edad", "Color", "Nivel de Azúcar" }));
+        cbo_organizar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cepa", "Color", "Edad", "Nivel de Azúcar" }));
         cbo_organizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbo_organizarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Reorganizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -236,6 +244,8 @@ public class JFrame_Principal extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbo_organizar, 0, 176, Short.MAX_VALUE)
                             .addComponent(btn_siguiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -247,7 +257,8 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_retirar)
-                    .addComponent(cbo_organizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbo_organizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_siguiente)
@@ -298,6 +309,11 @@ public class JFrame_Principal extends javax.swing.JFrame {
         Refrescar();
     }//GEN-LAST:event_btn_anteriorActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        lista.Reorganizar(cbo_organizar.getSelectedIndex());
+        temp.listar(modTabla);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -344,6 +360,7 @@ public class JFrame_Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbo_edad;
     private javax.swing.JComboBox<String> cbo_nivel;
     private javax.swing.JComboBox<String> cbo_organizar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

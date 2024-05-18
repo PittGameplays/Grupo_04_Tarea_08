@@ -25,13 +25,29 @@ public class Lista_Cola {
             fin = nuevo;
         }
     }
-    
-    public void agregarBotella(Botella elemento){
-        Cola temp = EncontrarTipo(elemento.getCepa());
-        if(temp != null){
+
+    public void agregarBotella(Botella elemento) {
+        
+        String encontrar;
+        switch (organizar) {
+            case 0:
+                encontrar = elemento.getCepa();
+                break;
+            case 1:
+                encontrar = elemento.getColor();
+                break;
+            case 2:
+                encontrar = elemento.getEdad();
+                break;
+            default:
+                encontrar = elemento.getNivel_de_azucar();
+        }
+        
+        Cola temp = EncontrarTipo(encontrar);
+        if (temp != null) {
             temp.getBotella().agregar(elemento);
-        } else if((temp = EncontrarVacio()) != null){
-            temp.setTipo(elemento.getCepa());
+        } else if ((temp = EncontrarVacio()) != null) {
+            temp.setTipo(encontrar);
             temp.getBotella().agregar(elemento);
         } else {
             JOptionPane.showMessageDialog(null, "No se ha encontrado ninguna columna disponible");
@@ -40,18 +56,20 @@ public class Lista_Cola {
 
     public Cola EncontrarTipo(String tipo) {
         Nodo_Cola aux = inicio;
-        do {            
-            if (aux.getElemento().getTipo().equals(tipo) && aux.getElemento().getBotella().Recorrer_Pila_Contar() < 12) {
+        do {
+            if (aux.getElemento().getTipo().equals(tipo)
+                    && aux.getElemento().getBotella().Recorrer_Pila_Contar() < 12) {
+                
                 return aux.getElemento();
             }
             aux = aux.getSiguiente();
         } while (aux != inicio);
         return null;
     }
-    
+
     public Cola EncontrarVacio() {
         Nodo_Cola aux = inicio;
-        do {            
+        do {
             if (aux.getElemento().getTipo().equals("")) {
                 return aux.getElemento();
             }
@@ -59,10 +77,10 @@ public class Lista_Cola {
         } while (aux != inicio);
         return null;
     }
-    
-    public Cola EncontrarPilaSiguiente(Lista_Botella aaa){
+
+    public Cola EncontrarPilaSiguiente(Lista_Botella aaa) {
         Nodo_Cola aux = inicio;
-        do {            
+        do {
             if (aux.getElemento().getBotella().equals(aaa)) {
                 return aux.getSiguiente().getElemento();
             }
@@ -70,11 +88,11 @@ public class Lista_Cola {
         } while (aux != inicio);
         return null;
     }
-    
-    public Cola EncontrarPilaAnterior(Lista_Botella aaa){
+
+    public Cola EncontrarPilaAnterior(Lista_Botella aaa) {
         Nodo_Cola anterior = fin;
         Nodo_Cola aux = inicio;
-        do {            
+        do {
             if (aux.getElemento().getBotella().equals(aaa)) {
                 return anterior.getElemento();
             }
@@ -82,6 +100,23 @@ public class Lista_Cola {
             aux = aux.getSiguiente();
         } while (aux != inicio);
         return null;
+    }
+
+    public void Reorganizar(int tipo) {
+        Lista_Botella temp = new Lista_Botella();
+        Nodo_Cola aux = inicio;
+        do {
+            aux.getElemento().getBotella().transferir(temp);
+            aux = aux.getSiguiente();
+        } while (aux != inicio);
+
+        do {
+            aux.getElemento().setTipo("");
+            aux = aux.getSiguiente();
+        } while (aux != inicio);
+
+        organizar = tipo;
+        temp.reorganizar(this);
     }
 
     public Cola getInicio() {

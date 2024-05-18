@@ -42,8 +42,12 @@ public class Lista_Botella {
     public Botella retirar() {
         if (!colaVacia()) {
             Botella temp = fin.getElemento();
-            fin = fin.getAnterior();
-            fin.setSiguiente(null);
+            if (fin == inicio) {
+                inicio = fin = null;
+            } else {
+                fin = fin.getAnterior();
+                fin.setSiguiente(null);
+            }
             return temp;
         }
         return null;
@@ -53,6 +57,22 @@ public class Lista_Botella {
         modTabla.setRowCount(0);
         for (Nodo_Botella aux = inicio; aux != null; aux = aux.getSiguiente()) {
             modTabla.addRow(aux.getElemento().getRegistro());
+        }
+    }
+
+    public void transferir(Lista_Botella temp) {
+        int cont = Recorrer_Pila_Contar();
+        for (int i = 0; i < cont; i++) {
+            System.out.println(i);
+            temp.agregar(this.retirar());
+        }
+    }
+
+    public void reorganizar(Lista_Cola lista) {
+        int cont = Recorrer_Pila_Contar();
+        for (int i = 0; i < cont; i++) {
+            lista.agregarBotella(retirar());
+            System.out.println("xd: " + i);
         }
     }
 
