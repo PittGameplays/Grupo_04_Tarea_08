@@ -63,7 +63,6 @@ public class Lista_Botella {
     public void transferir(Lista_Botella temp) {
         int cont = Recorrer_Pila_Contar();
         for (int i = 0; i < cont; i++) {
-            System.out.println(i);
             temp.agregar(this.retirar());
         }
     }
@@ -72,7 +71,6 @@ public class Lista_Botella {
         int cont = Recorrer_Pila_Contar();
         for (int i = 0; i < cont; i++) {
             lista.agregarBotella(retirar());
-            System.out.println("xd: " + i);
         }
     }
 
