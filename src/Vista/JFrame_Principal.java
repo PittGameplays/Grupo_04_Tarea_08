@@ -10,10 +10,11 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class JFrame_Principal extends javax.swing.JFrame {
+
     Lista_Cola lista = new Lista_Cola();
-    Lista_Botella objLista = new Lista_Botella();
+    Lista_Botella temp = lista.getInicio().getBotella();
+    //Lista_Botella objLista = new Lista_Botella();
     Botella objbotella = new Botella();
     private DefaultTableModel modTabla;
     private int indiceCepaActual = 0;
@@ -22,22 +23,13 @@ public class JFrame_Principal extends javax.swing.JFrame {
     public JFrame_Principal() {
         initComponents();
         modTabla = (DefaultTableModel) tbl_datos.getModel();
-        
-    
-    }
-  private void ActualizarJTable(String cepaFiltrada) {
-    DefaultTableModel model = (DefaultTableModel) tbl_datos.getModel(); 
-    model.setRowCount(0);
 
-    Nodo_Botella nodoActual = objLista.getInicio(); 
-    while (nodoActual != null) {
-        Botella botella = nodoActual.getElemento();
-        if (botella.getCepa().equals(cepaFiltrada)) {
-            model.addRow(botella.getRegistro()); 
-        }
-        nodoActual = nodoActual.getSiguiente();
     }
-  }
+    
+    private void Refrescar() {
+        temp.listar(modTabla);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -280,42 +272,30 @@ public class JFrame_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-        try {
-            Date fecha_util = (Date) jSpinner1.getModel().getValue();
-            LocalDate fecha_de_cosecha = fecha_util.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            String cepa = (String) cbo_cepa.getSelectedItem();
-            String color = (String) cbo_color.getSelectedItem();
-            String edad = (String) cbo_edad.getSelectedItem();
-            String nivel_de_azucar = (String) cbo_nivel.getSelectedItem();
-            if (cepa == null || color == null || edad == null || nivel_de_azucar == null || fecha_de_cosecha == null) {
-                throw new Exception("Todos los campos deben estar completos.");
-            }
-            Botella elemento = new Botella(fecha_de_cosecha, cepa, color, edad, nivel_de_azucar);
-            objLista.agregar(elemento);
-            objLista.listar(modTabla);
+        Date fecha_util = (Date) jSpinner1.getModel().getValue();
+        LocalDate fecha_de_cosecha = fecha_util.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String cepa = (String) cbo_cepa.getSelectedItem();
+        String color = (String) cbo_color.getSelectedItem();
+        String edad = (String) cbo_edad.getSelectedItem();
+        String nivel_de_azucar = (String) cbo_nivel.getSelectedItem();
+        Botella elemento = new Botella(fecha_de_cosecha, cepa, color, edad, nivel_de_azucar);
+        lista.agregarBotella(elemento);
+        Refrescar();
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al agregar la botella: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void cbo_organizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_organizarActionPerformed
-    
+
     }//GEN-LAST:event_cbo_organizarActionPerformed
 
     private void btn_siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguienteActionPerformed
-       indiceCepaActual = (indiceCepaActual + 1) % cepas.length; 
-       ActualizarJTable(cepas[indiceCepaActual]);
+        temp = lista.EncontrarPilaSiguiente(temp).getBotella();
+        Refrescar();
     }//GEN-LAST:event_btn_siguienteActionPerformed
 
     private void btn_anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anteriorActionPerformed
-          if (indiceCepaActual == 0) {
-              indiceCepaActual = cepas.length - 1; 
-    }else {
-        indiceCepaActual--;
-    }
-        ActualizarJTable(cepas[indiceCepaActual]);
+        temp = lista.EncontrarPilaAnterior(temp).getBotella();
+        Refrescar();
     }//GEN-LAST:event_btn_anteriorActionPerformed
 
     /**
@@ -352,11 +332,6 @@ public class JFrame_Principal extends javax.swing.JFrame {
                 new JFrame_Principal().setVisible(true);
             }
         });
-    }
-     private void actualizarTabla() {
-        DefaultTableModel model = (DefaultTableModel) tbl_datos.getModel();
-        model.setRowCount(0);
-        objLista.listar(modTabla);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

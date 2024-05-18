@@ -4,19 +4,21 @@ import Modelo.Botella;
 import javax.swing.table.DefaultTableModel;
 
 public class Lista_Botella {
+
     Nodo_Botella inicio, fin;
 
     public Lista_Botella() {
         inicio = fin = null;
     }
-     public Nodo_Botella getInicio() {
+
+    public Nodo_Botella getInicio() {
         return inicio;
     }
-    
-    public void agregar(Botella elemento){
+
+    public void agregar(Botella elemento) {
         Nodo_Botella nuevo = new Nodo_Botella(elemento);
-        
-        if(colaVacia()){
+
+        if (colaVacia()) {
             inicio = fin = nuevo;
         } else {
             nuevo.setSiguiente(inicio);
@@ -24,11 +26,11 @@ public class Lista_Botella {
             inicio = nuevo;
         }
     }
-    
-    public boolean colaVacia(){
+
+    public boolean colaVacia() {
         return inicio == null;
     }
-    
+
     public int Recorrer_Pila_Contar() {
         int a = 0;
         for (Nodo_Botella aux = inicio; aux != null; aux = aux.getSiguiente()) {
@@ -36,9 +38,9 @@ public class Lista_Botella {
         }
         return a;
     }
-    
-    public Botella retirar(){
-        if(!colaVacia()){
+
+    public Botella retirar() {
+        if (!colaVacia()) {
             Botella temp = fin.getElemento();
             fin = fin.getAnterior();
             fin.setSiguiente(null);
@@ -46,12 +48,12 @@ public class Lista_Botella {
         }
         return null;
     }
-    
-    public void listar(DefaultTableModel modTabla){
+
+    public void listar(DefaultTableModel modTabla) {
         modTabla.setRowCount(0);
         for (Nodo_Botella aux = inicio; aux != null; aux = aux.getSiguiente()) {
             modTabla.addRow(aux.getElemento().getRegistro());
         }
     }
-    
+
 }

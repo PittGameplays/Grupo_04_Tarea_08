@@ -39,24 +39,52 @@ public class Lista_Cola {
     }
 
     public Cola EncontrarTipo(String tipo) {
-        for (Nodo_Cola aux = inicio; aux != null; aux = aux.getSiguiente()) {
+        Nodo_Cola aux = inicio;
+        do {            
             if (aux.getElemento().getTipo().equals(tipo) && aux.getElemento().getBotella().Recorrer_Pila_Contar() < 12) {
                 return aux.getElemento();
             }
-        }
+            aux = aux.getSiguiente();
+        } while (aux != inicio);
         return null;
     }
     
     public Cola EncontrarVacio() {
-        for (Nodo_Cola aux = inicio; aux != null; aux = aux.getSiguiente()) {
+        Nodo_Cola aux = inicio;
+        do {            
             if (aux.getElemento().getTipo().equals("")) {
                 return aux.getElemento();
             }
-        }
+            aux = aux.getSiguiente();
+        } while (aux != inicio);
+        return null;
+    }
+    
+    public Cola EncontrarPilaSiguiente(Lista_Botella aaa){
+        Nodo_Cola aux = inicio;
+        do {            
+            if (aux.getElemento().getBotella().equals(aaa)) {
+                return aux.getSiguiente().getElemento();
+            }
+            aux = aux.getSiguiente();
+        } while (aux != inicio);
+        return null;
+    }
+    
+    public Cola EncontrarPilaAnterior(Lista_Botella aaa){
+        Nodo_Cola anterior = fin;
+        Nodo_Cola aux = inicio;
+        do {            
+            if (aux.getElemento().getBotella().equals(aaa)) {
+                return anterior.getElemento();
+            }
+            anterior = anterior.getSiguiente();
+            aux = aux.getSiguiente();
+        } while (aux != inicio);
         return null;
     }
 
-    public Cola InicioCola() {
+    public Cola getInicio() {
         return inicio.getElemento();
     }
 }

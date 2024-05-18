@@ -7,6 +7,8 @@ public class Cola {
     private Lista_Botella botellas;
 
     public Cola() {
+        botellas = new Lista_Botella();
+        tipo = "";
     }
 
     public String getTipo() {
