@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class JFrame_Principal extends javax.swing.JFrame {
     Lista_Cola lista = new Lista_Cola();
     Lista_Botella objLista = new Lista_Botella();
-    Botella  objbotella = new Botella();
+    Botella objbotella = new Botella();
     private DefaultTableModel modTabla;
     private int indiceCepaActual = 0;
     private String[] cepas = {"Cabernet Sauvignon", "Pinot noir", "Riesling", "Merlot", "Chardonnay", "Sauvignon blanc"};

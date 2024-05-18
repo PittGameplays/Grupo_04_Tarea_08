@@ -8,7 +8,7 @@ public class Nodo_Cola {
     
     public Nodo_Cola(Cola elemento) {
         this.elemento = elemento;
-        siguiente = null;
+        siguiente = this;
     }
 
     public Nodo_Cola(Cola elemento, Nodo_Cola siguiente) {
